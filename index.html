@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>いろみずきカラー協会 | 神聖色数鑑定</title>
+<meta name="description" content="月とカラーとナンバーから詠む。神聖幾何学×占星術×カバラ数秘による「神聖色数」で、あなたの魂が選んだ色と生き方を読み解きます。">
+<style>
+  :root {
+    /* text on gold fills (dark ink reads better on gold than white) */
+    --navy: #443d52;
+    --deep-purple: #fdf4ff;   /* select option background (light) */
+    --purple: #2d1b6b;
+    --gold: #b08d57;          /* accent (app準拠) */
+    --gold-light: #94733f;    /* repurposed: readable gold for text/links on light bg */
+    --gold-pale: #94733f;     /* repurposed: readable gold for quote/cta */
+    --ivory: #f9f5ee;
+    --text-light: #4a4256;    /* repurposed: main ink text */
+    --text-muted: #7b7390;    /* muted text on light bg */
+    --ink-deep: #332d42;      /* headings */
+    --glass: rgba(255,255,255,0.55);
+    --line: rgba(80,60,90,0.1);
+    --accent-pink: #c98aa8;
+    --accent-teal: #4fa9a1;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', serif;
+    /* 七色パステルのふんわり背景（添付画像の色調を再現） */
+    background:
+      radial-gradient(ellipse at 18% 18%, rgba(208,238,255,0.9) 0%, transparent 48%),
+      radial-gradient(ellipse at 82% 14%, rgba(255,221,239,0.9) 0%, transparent 50%),
+      radial-gradient(ellipse at 88% 72%, rgba(255,247,210,0.85) 0%, transparent 52%),
+      radial-gradient(ellipse at 12% 82%, rgba(255,225,242,0.85) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 55%, rgba(233,224,255,0.7) 0%, transparent 60%),
+      linear-gradient(135deg, #e8f5ff 0%, #ffe9f5 38%, #f6ecff 62%, #fff6e6 100%);
+    background-attachment: fixed;
+    color: var(--text-light);
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* ========== SPARKLES BACKGROUND ========== */
+  .stars-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 0 6px 1px rgba(255,255,255,0.7);
+    animation: twinkle var(--dur, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.4); }
+  }
+
+  /* ========== HEADER / NAV ========== */
+  header {
+    position: fixed;
+    top: 0; width: 100%;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(176, 141, 87, 0.25);
+  }
+
+  .logo {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+  }
+
+  .logo span {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    margin-top: 2px;
+  }
+
+  nav { display: flex; gap: 2rem; }
+
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    transition: color 0.3s;
+  }
+
+  nav a:hover { color: var(--gold-light); }
+
+  /* ========== HERO ========== */
+  #hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-sacred {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(600px, 90vw);
+    opacity: 0.22;
+    animation: slowRotate 120s linear infinite;
+  }
+
+  @keyframes slowRotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  .hero-sub {
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    color: var(--ink-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--text-muted);
+    letter-spacing: 0.25em;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .hero-copy {
+    max-width: 520px;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: var(--text-light);
+    line-height: 2;
+    margin: 1.5rem auto 3rem;
+  }
+
+  .hero-copy strong { color: var(--gold-light); }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 0.2em;
+    font-size: 0.9rem;
+    border-radius: 2px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+    z-index: -1;
+  }
+
+  .btn:hover { color: #fff; }
+  .btn:hover::before { transform: translateX(0); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, rgba(176,141,87,0.18), rgba(176,141,87,0.06));
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    animation: fadeInUp 2s ease infinite;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollLine 2s ease infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ========== SECTION COMMONS ========== */
+  section { position: relative; z-index: 1; }
+
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: var(--ink-deep);
+    margin-bottom: 1rem;
+  }
+
+  .section-title span { color: var(--gold-light); }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .section-body {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 2.1;
+  }
+
+  /* ========== WHAT IS ========== */
+  #what {
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .what-card {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(176,141,87,0.28);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    box-shadow: 0 6px 24px rgba(120,90,140,0.08);
+  }
+
+  .what-card:hover {
+    border-color: rgba(176,141,87,0.6);
+    background: rgba(255,255,255,0.75);
+    transform: translateY(-4px);
+  }
+
+  .what-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .what-card h3 {
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.8rem;
+  }
+
+  .what-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+  }
+
+  .quote-box {
+    border-left: 2px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    background: rgba(255,255,255,0.5);
+    border-radius: 0 6px 6px 0;
+    font-size: 1.05rem;
+    line-height: 2.2;
+    color: var(--gold-pale);
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+
+  /* ========== COLORS PREVIEW ========== */
+  #colors {
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.45) 0%, transparent 70%);
+  }
+
+  .colors-intro {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 2.1;
+    max-width: 680px;
+    margin-bottom: 3rem;
+  }
+
+  .color-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.7rem, 2.4vw, 1.5rem);
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .color-strip div {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(80,60,90,0.18);
+    transition: transform 0.3s;
+  }
+
+  .color-strip div:hover { transform: scale(1.25); }
+
+  .color-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  .color-card {
+    border-radius: 6px;
+    padding: 0.95rem 1.2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: transform 0.3s;
+  }
+
+  .color-card:hover { transform: translateY(-4px); }
+
+  .color-card > * { position: relative; z-index: 1; }
+
+  /* 明るい背景色のカードは濃い文字に切り替え（.color-card--dark） */
+  .color-name-en {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 0.15rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+
+  .color-name-ja {
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+  }
+
+  .color-keywords {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+
+  .color-card--dark .color-name-en {
+    color: rgba(40,33,52,0.62);
+    text-shadow: none;
+  }
+
+  .color-card--dark .color-name-ja {
+    color: #2a2335;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.25);
+  }
+
+  .color-card--dark .color-keywords {
+    color: rgba(40,33,52,0.85);
+    text-shadow: none;
+  }
+
+  .color-lock {
+    margin-top: 1rem;
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+  }
+
+  .color-lock::before { content: '✦ '; }
+
+  /* ========== READINGS ========== */
+  #readings {
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%);
+  }
+
+  .readings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 560px));
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .reading-card {
+    border: 1px solid rgba(176,141,87,0.3);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 24px rgba(120,90,140,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reading-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(176,141,87,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(30%, -30%);
+  }
+
+  .reading-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    border: 1px solid rgba(200,168,75,0.4);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+  }
+
+  .reading-card h3 {
+    font-size: 1.4rem;
+    color: var(--ink-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .reading-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 2;
+    margin-bottom: 1.5rem;
+  }
+
+  .reading-items {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .reading-items li {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .reading-items li::before {
+    content: '◈';
+    color: var(--gold);
+    font-size: 0.7rem;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  .reading-hidden {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 0.8rem;
+    border: 1px dashed rgba(200,168,75,0.2);
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+  }
+
+  .reading-hidden::before { content: '✦  '; color: var(--gold); }
+  .reading-hidden::after { content: '  ✦'; color: var(--gold); }
+
+  /* ========== WHAT YOU DISCOVER ========== */
+  #discover {
+    background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.45) 0%, transparent 60%);
+  }
+
+  .discover-planets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.2rem;
+    margin: 3rem 0;
+  }
+
+  .planet-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(176,141,87,0.18);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .planet-item:hover { border-color: rgba(176,141,87,0.45); transform: translateY(-3px); }
+
+  .planet-symbol {
+    font-size: 1.6rem;
+    width: 2.5rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .planet-info h4 {
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+
+  .planet-info p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .discover-cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    border: 1px solid rgba(176,141,87,0.3);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 24px rgba(120,90,140,0.08);
+    margin-top: 3rem;
+  }
+
+  .discover-cta p {
+    font-size: 1.1rem;
+    color: var(--gold-pale);
+    margin-bottom: 2rem;
+    line-height: 2;
+  }
+
+  /* ========== COURSE ========== */
+  #course {
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  }
+
+  .course-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .course-sacred {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sacred-anim {
+    animation: slowRotate 80s linear infinite;
+    opacity: 0.6;
+  }
+
+  .course-text h3 {
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .course-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 2;
+    margin-bottom: 1.5rem;
+  }
+
+  .course-steps {
+    list-style: none;
+    counter-reset: step;
+    margin-bottom: 2rem;
+  }
+
+  .course-steps li {
+    counter-increment: step;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+
+  .course-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    width: 2rem;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+
+  /* ========== FLOW ========== */
+  #flow {
+    background: radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.45) 0%, transparent 60%);
+  }
+
+  .flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 3rem;
+    max-width: 600px;
+  }
+
+  .flow-step {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    top: 3.5rem;
+    width: 1px;
+    height: calc(100% - 1rem);
+    background: linear-gradient(to bottom, rgba(200,168,75,0.4), rgba(200,168,75,0.1));
+  }
+
+  .flow-num {
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    flex-shrink: 0;
+    background: rgba(200,168,75,0.05);
+  }
+
+  .flow-body {
+    padding: 0.5rem 0 2.5rem;
+  }
+
+  .flow-body h4 {
+    font-size: 1rem;
+    color: var(--ink-deep);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .flow-body p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+  }
+
+  /* ========== CONTACT ========== */
+  #contact {
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.5) 100%);
+  }
+
+  .contact-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .contact-form {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.78rem;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+  }
+
+  .form-group label .required {
+    color: var(--accent-pink);
+    margin-left: 0.3rem;
+    font-size: 0.65rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(176,141,87,0.3);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.3s, background 0.3s;
+    outline: none;
+    appearance: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: #a89fb5; }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: rgba(176,141,87,0.7);
+    background: rgba(255,255,255,0.85);
+  }
+
+  .form-group select option {
+    background: var(--deep-purple);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 140px; }
+
+  .form-note {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.4);
+    border-radius: 4px;
+  }
+
+  .btn-submit {
+    padding: 1.1rem;
+    background: linear-gradient(135deg, rgba(176,141,87,0.25), rgba(176,141,87,0.08));
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: inherit;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    cursor: pointer;
+    transition: all 0.4s;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .btn-submit:hover {
+    background: var(--gold);
+    color: #fff;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(176,141,87,0.3);
+    background: rgba(255,255,255,0.4);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.3em;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-sns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-sns a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    transition: color 0.3s;
+    border: 1px solid rgba(176,141,87,0.3);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+  }
+
+  .footer-sns a:hover {
+    color: var(--gold-light);
+    border-color: rgba(176,141,87,0.6);
+  }
+
+  .footer-copy {
+    font-size: 0.7rem;
+    color: rgba(123,115,144,0.8);
+    letter-spacing: 0.1em;
+  }
+
+  /* ========== FADE IN ANIMATION ========== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========== TRIAL READING ========== */
+  #trial {
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.5) 0%, transparent 65%);
+  }
+
+  .trial-lead {
+    max-width: 660px;
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 2.2;
+    margin-bottom: 3.5rem;
+  }
+
+  .trial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    align-items: start;
+  }
+
+  .trial-card {
+    border-radius: 6px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .trial-card--light {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(176,141,87,0.28);
+    box-shadow: 0 6px 24px rgba(120,90,140,0.08);
+  }
+
+  .trial-card--full {
+    background: linear-gradient(160deg, rgba(255,250,238,0.8), rgba(255,255,255,0.6));
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(176,141,87,0.55);
+    box-shadow: 0 8px 30px rgba(176,141,87,0.18);
+    position: relative;
+  }
+
+  .trial-card--full::before {
+    content: 'RECOMMENDED';
+    position: absolute;
+    top: -1px; right: 1.8rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 0.25rem 0.8rem;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .trial-card-badge {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    border: 1px solid rgba(200,168,75,0.35);
+    padding: 0.28rem 0.8rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    align-self: flex-start;
+  }
+
+  .trial-card h3 {
+    font-size: 1.15rem;
+    color: var(--ink-deep);
+    letter-spacing: 0.05em;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  .trial-card > p {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 2;
+    margin-bottom: 1.4rem;
+  }
+
+  .trial-items {
+    list-style: none;
+    margin-bottom: 1.4rem;
+  }
+
+  .trial-items li {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    padding: 0.42rem 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .trial-items li::before {
+    content: '◈';
+    color: var(--gold);
+    font-size: 0.62rem;
+    margin-top: 0.28rem;
+    flex-shrink: 0;
+  }
+
+  .trial-item-note {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-top: 0.15rem;
+  }
+
+  .trial-recommend {
+    font-size: 0.77rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    padding: 0.9rem 1rem;
+    background: rgba(176,141,87,0.08);
+    border-radius: 4px;
+    margin-bottom: 1.8rem;
+  }
+
+  .trial-recommend strong {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.35rem;
+    font-weight: normal;
+  }
+
+  .trial-price-wrap {
+    margin-top: auto;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(200,168,75,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .trial-price-label {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .trial-price-amount {
+    font-size: 2.1rem;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .trial-price-amount sup {
+    font-size: 1rem;
+    vertical-align: super;
+  }
+
+  .btn-trial {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    border-radius: 3px;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .btn-trial:hover {
+    background: #c9a86a;
+    border-color: #c9a86a;
+    color: #fff;
+  }
+
+  .btn-trial--outline {
+    background: transparent;
+    color: var(--gold-light);
+  }
+
+  .btn-trial--outline:hover {
+    background: rgba(176,141,87,0.12);
+    color: var(--gold-light);
+  }
+
+  .trial-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .trial-table th, .trial-table td {
+    padding: 0.85rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .trial-table th {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-light);
+    font-weight: normal;
+    background: rgba(176,141,87,0.12);
+  }
+
+  .trial-table td { color: var(--text-light); }
+
+  .trial-table td:last-child {
+    color: var(--gold-light);
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .trial-note {
+    padding: 1rem 1.4rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.45);
+  }
+
+  .trial-note ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .trial-note li {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    padding-left: 1.1rem;
+    position: relative;
+    line-height: 1.8;
+  }
+
+  .trial-note li::before {
+    content: '◦';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    nav { display: none; }
+
+    .course-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .course-sacred { display: none; }
+
+    .readings-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .color-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trial-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .trial-price-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .btn-trial {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .color-cards { grid-template-columns: 1fr; }
+    .what-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<div class="stars-bg" id="stars"></div>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    いろみずきカラー協会
+    <span>IROMIZUKI COLOR ASSOCIATION</span>
+  </div>
+  <nav>
+    <a href="#what">神聖色数とは</a>
+    <a href="#readings">鑑定メニュー</a>
+    <a href="#trial">お試し鑑定</a>
+    <a href="#course">講師養成</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section id="hero">
+  <!-- Sacred Geometry Background -->
+  <svg class="hero-sacred" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="250" cy="250" r="240" stroke="#c8a84b" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="180" stroke="#c8a84b" stroke-width="0.5"/>
+    <circle cx="250" cy="120" r="130" stroke="#c8a84b" stroke-width="0.5"/>
+    <circle cx="363" cy="185" r="130" stroke="#c8a84b" stroke-width="0.5"/>
+    <circle cx="363" cy="315" r="130" stroke="#c8a84b" stroke-width="0.5"/>
+    <circle cx="250" cy="380" r="130" stroke="#c8a84b" stroke-width="0.5"/>
+    <circle cx="137" cy="315" r="130" stroke="#c8a84b" stroke-width="0.5"/>
+    <circle cx="137" cy="185" r="130" stroke="#c8a84b" stroke-width="0.5"/>
+    <circle cx="250" cy="250" r="130" stroke="#c8a84b" stroke-width="0.5"/>
+    <!-- Metatron Cube Lines -->
+    <line x1="250" y1="120" x2="363" y2="185" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="363" y1="185" x2="363" y2="315" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="363" y1="315" x2="250" y2="380" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="250" y1="380" x2="137" y2="315" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="137" y1="315" x2="137" y2="185" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="137" y1="185" x2="250" y2="120" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="250" y1="120" x2="363" y2="315" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="250" y1="120" x2="250" y2="380" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="250" y1="120" x2="137" y2="315" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="363" y1="185" x2="137" y2="315" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="363" y1="185" x2="137" y2="185" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="363" y1="185" x2="250" y2="380" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="363" y1="315" x2="137" y2="185" stroke="#c8a84b" stroke-width="0.3"/>
+    <line x1="363" y1="315" x2="137" y2="315" stroke="#c8a84b" stroke-width="0.3"/>
+    <circle cx="250" cy="250" r="4" fill="#c8a84b" opacity="0.8"/>
+    <circle cx="250" cy="120" r="3" fill="#c8a84b" opacity="0.5"/>
+    <circle cx="363" cy="185" r="3" fill="#c8a84b" opacity="0.5"/>
+    <circle cx="363" cy="315" r="3" fill="#c8a84b" opacity="0.5"/>
+    <circle cx="250" cy="380" r="3" fill="#c8a84b" opacity="0.5"/>
+    <circle cx="137" cy="315" r="3" fill="#c8a84b" opacity="0.5"/>
+    <circle cx="137" cy="185" r="3" fill="#c8a84b" opacity="0.5"/>
+  </svg>
+
+  <div class="hero-sub">月とカラーとナンバーから詠む</div>
+  <h1 class="hero-title">
+    あなたの魂が<br>
+    <em>選んだ色</em>を知る
+  </h1>
+  <p class="hero-tagline">― 神聖色数 SHINSEI SHIKISU ―</p>
+  <p class="hero-copy">
+    生まれた日時と場所に宿る宇宙の記憶。<br>
+    神聖幾何学・占星術・カバラ数秘が交わるところに、<br>
+    <strong>あなただけの色彩と魂の青写真</strong>が浮かび上がります。
+  </p>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- What is 神聖色数 -->
+<section id="what">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">About</p>
+      <h2 class="section-title">神聖色数カラー鑑定とは<span>何か</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="fade-in section-body">
+      <p>古代から伝わる神聖幾何学「フルーツ・オブ・ライフ（生命の果実）」の図形に、星座・惑星・カバラ数秘の叡智を重ね合わせた、いろみずきカラー協会独自の鑑定メソッドです。</p>
+    </div>
+
+    <div class="quote-box fade-in">
+      「もしあなた自身が〝地球に生まれる〟と決めて生まれたのだとしたら...<br>
+      　その時あなたの魂はどんな生き方を望んでいたのでしょうか？」
+    </div>
+
+    <div class="what-grid fade-in">
+      <div class="what-card">
+        <div class="what-icon">✦</div>
+        <h3>神聖幾何学</h3>
+        <p>宇宙の青写真とも呼ばれる「フルーツ・オブ・ライフ」。古代エジプト・シュメールから受け継がれた形に、現実創造の秘密が隠されています。</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon">☽</div>
+        <h3>占星術</h3>
+        <p>太陽・月・水星・金星・火星・木星・土星の7惑星と12星座の配置から、魂の性質と人生パターンを読み解きます。</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon">◈</div>
+        <h3>カバラ数秘術</h3>
+        <p>古代ユダヤの叡智、カバラ数秘術。生年月日に宿る数の意味を色と組み合わせ、あなた固有の魂の青写真を描き出します。</p>
+      </div>
+    </div>
+
+    <div class="fade-in section-body">
+      <p>これら三つの叡智が交わることで生まれる「神聖色数」は、単なる占いではありません。<br>あなたの無意識95%へアプローチし、<strong style="color:var(--gold-light)">本来の自分らしいエネルギーへと整えていく羅針盤</strong>として機能します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Discover - What you learn -->
+<section id="discover">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">What You Discover</p>
+      <h2 class="section-title">7つの惑星が語る<br><span>あなたの物語</span></h2>
+      <div class="divider"></div>
+      <p class="section-body">生まれた瞬間の星の配置は、あなたの魂が地球に持ってきたメッセージ。7つの惑星がそれぞれ異なる側面からあなたを照らし出します。</p>
+    </div>
+
+    <div class="discover-planets fade-in">
+      <div class="planet-item">
+        <div class="planet-symbol">☀</div>
+        <div class="planet-info">
+          <h4>太陽 ― 主人格</h4>
+          <p>人生を占めるあなたの本質。自己実現の姿と、プラス・マイナス両面の性質。</p>
+        </div>
+      </div>
+      <div class="planet-item">
+        <div class="planet-symbol">☽</div>
+        <div class="planet-info">
+          <h4>月 ― 無意識</h4>
+          <p>あなたの95%を占める無意識の自分。隠れた欲求と、現実が動くカギ。</p>
+        </div>
+      </div>
+      <div class="planet-item">
+        <div class="planet-symbol">☿</div>
+        <div class="planet-info">
+          <h4>水星 ― 思考・言葉</h4>
+          <p>知覚・コミュニケーション・思考のパターン。人とどう関わるか。</p>
+        </div>
+      </div>
+      <div class="planet-item">
+        <div class="planet-symbol">♀</div>
+        <div class="planet-info">
+          <h4>金星 ― 愛の表現</h4>
+          <p>愛するものへのアプローチの仕方。美意識と、惹かれるものの傾向。</p>
+        </div>
+      </div>
+      <div class="planet-item">
+        <div class="planet-symbol">♂</div>
+        <div class="planet-info">
+          <h4>火星 ― 行動エネルギー</h4>
+          <p>あなたを動かすエネルギーの源。目標に向かわせる力とその使い方。</p>
+        </div>
+      </div>
+      <div class="planet-item">
+        <div class="planet-symbol">♃</div>
+        <div class="planet-info">
+          <h4>木星 ― 幸運と拡大</h4>
+          <p>発展・豊かさへの鍵。幸福に向かうときに活きるあなたの可能性。</p>
+        </div>
+      </div>
+      <div class="planet-item">
+        <div class="planet-symbol">♄</div>
+        <div class="planet-info">
+          <h4>土星 ― 課題と統合</h4>
+          <p>人生のテーマと向き合うべき癖。バランスをとることで開く扉。</p>
+        </div>
+      </div>
+      <div class="planet-item" style="border-color:rgba(176,141,87,0.3);background:rgba(176,141,87,0.08)">
+        <div class="planet-symbol" style="color:var(--gold)">＋</div>
+        <div class="planet-info">
+          <h4 style="color:var(--gold-light)">さらに10の鑑定項目</h4>
+          <p style="color:var(--text-muted)">サポート色数・統合色数・今年のサポートになる鍵・毎月のエネルギーの流れ など...</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Colors Preview -->
+<section id="colors">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">Color System</p>
+      <h2 class="section-title">12の<span>魂の色</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <p class="colors-intro fade-in">
+      おひつじ座のレッドからうお座のマゼンタまで、12星座に対応する12の色がそれぞれ固有のエネルギーと意味を持ちます。あなたはどの色の特徴を選んで生まれてきたのでしょうか。
+    </p>
+
+    <div class="color-strip fade-in">
+      <div style="background:#d63b3b"></div>
+      <div style="background:#ec7d6e"></div>
+      <div style="background:#ef9440"></div>
+      <div style="background:#cda13a"></div>
+      <div style="background:#e6c92e"></div>
+      <div style="background:#8f9233"></div>
+      <div style="background:#2fa85f"></div>
+      <div style="background:#1cb3ab"></div>
+      <div style="background:#2f72c4"></div>
+      <div style="background:#2e3a93"></div>
+      <div style="background:#7b3fa6"></div>
+      <div style="background:#c23c92"></div>
+    </div>
+
+    <div class="color-cards fade-in">
+      <div class="color-card" style="background:#d63b3b">
+        <div class="color-name-en">RED / おひつじ座</div>
+        <div class="color-name-ja">レッド</div>
+        <div class="color-keywords">情熱・行動力・生命力<br>地に足をつけて現実を生きる力</div>
+      </div>
+      <div class="color-card color-card--dark" style="background:#ec7d6e">
+        <div class="color-name-en">CORAL / おうし座</div>
+        <div class="color-name-ja">コーラル</div>
+        <div class="color-keywords">愛の知恵・共感・女性性<br>自立しながら支え合う調和の力</div>
+      </div>
+      <div class="color-card color-card--dark" style="background:#ef9440">
+        <div class="color-name-en">ORANGE / ふたご座</div>
+        <div class="color-name-ja">オレンジ</div>
+        <div class="color-keywords">喜び・自立・社交性<br>過去を解放し再生する力</div>
+      </div>
+      <div class="color-card color-card--dark" style="background:#cda13a">
+        <div class="color-name-en">GOLD / かに座</div>
+        <div class="color-name-ja">ゴールド</div>
+        <div class="color-keywords">自己価値・叡智・輝き<br>内なる本質を照らす光</div>
+      </div>
+      <div class="color-card color-card--dark" style="background:#e6c92e">
+        <div class="color-name-en">YELLOW / しし座</div>
+        <div class="color-name-ja">イエロー</div>
+        <div class="color-keywords">喜び・知性・個性<br>太陽のように自分らしく輝く力</div>
+      </div>
+      <div class="color-card color-card--dark" style="background:#8f9233">
+        <div class="color-name-en">OLIVE / おとめ座</div>
+        <div class="color-name-ja">オリーブ</div>
+        <div class="color-keywords">調和・成長・希望<br>苦みを甘みへ変える変容の力</div>
+      </div>
+      <div class="color-card color-card--dark" style="background:#2fa85f">
+        <div class="color-name-en">GREEN / てんびん座</div>
+        <div class="color-name-ja">グリーン</div>
+        <div class="color-keywords">真実・バランス・癒し<br>心に方向性とスペースをもたらす力</div>
+      </div>
+      <div class="color-card color-card--dark" style="background:#1cb3ab">
+        <div class="color-name-en">TURQUOISE / さそり座</div>
+        <div class="color-name-ja">ターコイズ</div>
+        <div class="color-keywords">創造性・自由・表現<br>ハートから流れに乗って生きる力</div>
+      </div>
+      <div class="color-card" style="background:#2f72c4">
+        <div class="color-name-en">BLUE / いて座</div>
+        <div class="color-name-ja">ブルー</div>
+        <div class="color-keywords">信頼・平和・安らぎ<br>思考を癒し守る無条件の愛</div>
+      </div>
+      <div class="color-card" style="background:#2e3a93">
+        <div class="color-name-en">ROYAL BLUE / やぎ座</div>
+        <div class="color-name-ja">ロイヤルブルー</div>
+        <div class="color-keywords">直感・洞察・神秘<br>物事の深みと本質を見通す力</div>
+      </div>
+      <div class="color-card" style="background:#7b3fa6">
+        <div class="color-name-en">VIOLET / みずがめ座</div>
+        <div class="color-name-ja">ヴァイオレット</div>
+        <div class="color-keywords">霊性・統合・変容<br>二極を統べ天と地をつなぐ力</div>
+      </div>
+      <div class="color-card" style="background:#c23c92">
+        <div class="color-name-en">MAGENTA / うお座</div>
+        <div class="color-name-ja">マゼンタ</div>
+        <div class="color-keywords">慈愛・人類愛・配慮<br>小さなことに天の愛を見出す力</div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="text-align:center;margin-top:2rem">
+      <p style="font-size:0.85rem;color:var(--text-muted);letter-spacing:0.1em">あなたの色はどれでしょう？　鑑定で全12色のうちあなたを構成する色を読み解きます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Readings -->
+<section id="readings">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">Reading Menu</p>
+      <h2 class="section-title"><span>鑑定</span>メニュー</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="readings-grid">
+      <div class="reading-card fade-in">
+        <div class="reading-badge">SHINSEI SHIKISU READING</div>
+        <h3>鑑定士による神聖色数カラー鑑定</h3>
+        <p>生まれた日時・場所から算出。変わることのない魂の青写真を読み解きます。</p>
+        <ul class="reading-items">
+          <li>人生を占める主人格（太陽）</li>
+          <li>無意識のあなた自身（月）</li>
+          <li>知覚・思考・コミュニケーションのパターン（水星）</li>
+          <li>愛の表現パターンと美意識（金星）</li>
+          <li>行動パターンとエネルギー（火星）</li>
+          <li>発展・拡大・幸運に向かうもの（木星）</li>
+          <li>課題・バランスをとるもの（土星）</li>
+        </ul>
+        <div class="reading-hidden">さらに10項目の鑑定内容は、お問い合わせ後にご案内します</div>
+        <br>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.9">
+          ◈ オンライン（Zoom）または対面<br>
+          ◈ 複数の認定講師が対応<br>
+          ◈ 2回目以降は「毎月のエネルギーの流れ」を詳しく鑑定
+        </div>
+      </div>
+
+    </div>
+
+    <div class="discover-cta fade-in">
+      <p>あなたが何色の特徴を選んで生まれてきたのか、<br>その色があなたにどんな人生を用意しているのかを、<br><strong style="color:var(--gold-light)">鑑定士がマンツーマンで丁寧に読み解きます。</strong></p>
+      <a href="#contact" class="btn btn-primary">鑑定を申し込む</a>
+    </div>
+  </div>
+</section>
+
+<!-- Trial Reading / お試し鑑定 -->
+<section id="trial">
+  <div class="section-inner">
+
+    <div class="fade-in">
+      <p class="section-label">Try It Now</p>
+      <h2 class="section-title">今すぐ、あなたの<span>「色」</span>と出会えます。</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="trial-lead fade-in">
+      <p>夜空に星座が瞬くように、人にはそれぞれ生まれ持った「色」があります。</p>
+      <p>神聖色数カラー鑑定は、あなたが生まれた瞬間の月と七つの天体の位置を読み解き、神聖幾何学・カバラ数秘・占星学を重ねて、あなたという存在を12の聖なる色で映し出す鑑定です。</p>
+      <br>
+      <p>性格や才能、愛の表現、人生で向き合うテーマ──。<br>「自分でも気づいていなかった自分」に、そっと光が当たります。<br>まずは気軽に、あなたの色を覗いてみませんか。</p>
+    </div>
+
+    <div class="trial-grid">
+
+      <!-- ライト鑑定カード -->
+      <div class="trial-card trial-card--light fade-in">
+        <div class="trial-card-badge">LIGHT READING</div>
+        <h3>まずはワンコインで、<br>あなたの「核」となる色を。</h3>
+        <p>「自分って、どんな色なんだろう？」その答えを、いちばん手軽に知っていただけるのがライト鑑定です。お名前と生年月日を入れるだけで、あなたの内側で輝く中心の色と、すべてを束ねる統合の色を、神聖色数図とともにお届けします。</p>
+        <ul class="trial-items">
+          <li><div>自己実現の色（太陽の色）<span class="trial-item-note">― あなたの本質と自己実現の姿を、その色の意味とともに解説</span></div></li>
+          <li><div>自分軸でいられるときの統合の色<span class="trial-item-note">― 自分らしく在るときに輝く色を、意味とともに解説</span></div></li>
+          <li>神聖色数図</li>
+        </ul>
+        <div class="trial-recommend">
+          <strong>こんな方におすすめ</strong>
+          神聖色数鑑定がはじめての方 ／ まずは雰囲気を知ってみたい方 ／ 自分の「核」だけサクッと知りたい方
+        </div>
+        <div class="trial-price-wrap">
+          <div>
+            <span class="trial-price-label">LIGHT READING</span>
+            <div class="trial-price-amount"><sup>¥</sup>500</div>
+          </div>
+          <!-- TODO: 決済URLが確定したら href="#" を実際のURLに差し替えてください -->
+          <a href="#" class="btn-trial btn-trial--outline">２色鑑定をしてみる</a>
+        </div>
+      </div>
+
+      <!-- フル鑑定カード -->
+      <div class="trial-card trial-card--full fade-in">
+        <div class="trial-card-badge">FULL READING</div>
+        <h3>あなたの「すべての色」を、<br>深く読み解く。</h3>
+        <p>太陽・月・水星・金星・火星・木星・土星──七つの天体それぞれが司る色を導き出し、12の視点からあなたを丁寧に紐解いていきます。読み終えるころには、自分を信じる力が静かに満ちているはずです。PDFとして保存もできる、一生もののお守りに。</p>
+        <ul class="trial-items">
+          <li>主人格・自己実現の色（太陽）</li>
+          <li>無意識の奥で働く、もうひとりのあなた（月）</li>
+          <li>知覚・思考・コミュニケーションの傾向（水星）</li>
+          <li>愛の表現パターンと美意識（金星）</li>
+          <li>行動とエネルギーのかたち（火星）</li>
+          <li>発展・幸運へ向かう道（木星）</li>
+          <li>向き合うべき課題とバランス（土星）</li>
+          <li>統合の色　＋　PDF保存</li>
+        </ul>
+        <div class="trial-recommend">
+          <strong>こんな方におすすめ</strong>
+          自分を深く、まるごと知りたい方 ／ 人生の方向性や才能のヒントが欲しい方 ／ ライト鑑定で「もっと知りたい」と感じた方
+        </div>
+        <div class="trial-price-wrap">
+          <div>
+            <span class="trial-price-label">FULL READING</span>
+            <div class="trial-price-amount"><sup>¥</sup>2,200</div>
+          </div>
+          <!-- TODO: 決済URLが確定したら href="#" を実際のURLに差し替えてください -->
+          <a href="#" class="btn-trial">１２色鑑定をしてみる</a>
+        </div>
+      </div>
+
+    </div><!-- /.trial-grid -->
+
+    <!-- 料金まとめ -->
+    <div class="fade-in">
+      <table class="trial-table">
+        <thead>
+          <tr>
+            <th>メニュー</th>
+            <th>内容</th>
+            <th>価格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ライト鑑定</td>
+            <td>核となる2つの色＋神聖色数図</td>
+            <td>¥500</td>
+          </tr>
+          <tr>
+            <td>フル鑑定</td>
+            <td>7天体・12項目の完全鑑定＋PDF保存</td>
+            <td>¥2,200</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 安心のひとこと（フォーム付近） -->
+      <div class="trial-note">
+        <ul>
+          <li>出生時刻がわからなくても鑑定できます（12:00として計算します）</li>
+          <li>ご入力いただいた情報は鑑定の計算のみに使用します</li>
+          <li>鑑定はその場ですぐに表示されます</li>
+        </ul>
+      </div>
+    </div>
+
+    <!--
+    ========================================================
+    アップセル文（ライト鑑定の結果ページ下部用）
+    ========================================================
+    あなたの「核」となる色は、いかがでしたか？
+    実は、あなたの中には他にも六つの天体が、それぞれの色で輝いています。
+    フル鑑定なら、その全部に光を当てられます。
+    [ +¥1,700 でフル鑑定にアップグレード ]
+
+    ========================================================
+    認定鑑定士への導線（フル鑑定の結果ページ下部用）
+    ========================================================
+    「この色を、自分の人生でどう活かせばいい？」
+    そんな問いが芽生えたら、いろみずきカラー協会 認定鑑定士による個別鑑定へ。
+    [ 認定鑑定士をさがす ]
+    -->
+
+  </div>
+</section>
+
+<!-- Course -->
+<section id="course">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">Instructor Training</p>
+      <h2 class="section-title">神聖色数<span>鑑定士養成講座</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="course-content">
+      <div class="course-sacred">
+        <svg class="sacred-anim" width="280" height="280" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="250" cy="250" r="240" stroke="#c8a84b" stroke-width="0.8" opacity="0.4"/>
+          <circle cx="250" cy="250" r="130" stroke="#c8a84b" stroke-width="0.8" opacity="0.6"/>
+          <circle cx="250" cy="120" r="130" stroke="#c8a84b" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="363" cy="185" r="130" stroke="#c8a84b" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="363" cy="315" r="130" stroke="#c8a84b" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="250" cy="380" r="130" stroke="#c8a84b" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="137" cy="315" r="130" stroke="#c8a84b" stroke-width="0.5" opacity="0.4"/>
+          <circle cx="137" cy="185" r="130" stroke="#c8a84b" stroke-width="0.5" opacity="0.4"/>
+          <polygon points="250,70 420,330 80,330" fill="none" stroke="#c8a84b" stroke-width="0.6" opacity="0.5"/>
+          <polygon points="250,430 80,170 420,170" fill="none" stroke="#c8a84b" stroke-width="0.6" opacity="0.5"/>
+          <circle cx="250" cy="250" r="6" fill="#c8a84b" opacity="0.8"/>
+          <circle cx="250" cy="70" r="4" fill="#c8a84b" opacity="0.5"/>
+          <circle cx="420" cy="330" r="4" fill="#c8a84b" opacity="0.5"/>
+          <circle cx="80" cy="330" r="4" fill="#c8a84b" opacity="0.5"/>
+          <circle cx="80" cy="170" r="4" fill="#c8a84b" opacity="0.5"/>
+          <circle cx="420" cy="170" r="4" fill="#c8a84b" opacity="0.5"/>
+          <circle cx="250" cy="430" r="4" fill="#c8a84b" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="course-text fade-in">
+        <h3>神聖色数の叡智を伝える側へ</h3>
+        <p>鑑定士としての認定資格を取得し、神聖色数を通じて人の魂のサポートができる鑑定士を育てる養成講座です。</p>
+
+        <ul class="course-steps">
+          <li>神聖色数の種類と図形を学ぶ</li>
+          <li>12のカラーと惑星・星座の対応を習得</li>
+          <li>誕生色数図の読み方・算出方法を習得</li>
+          <li>カラーの意味と鑑定文の書き方を習得</li>
+          <li>チャクラ・アロマ・パワーストーンとの連動を学ぶ</li>
+          <li>実際の鑑定実習で技術を磨く</li>
+          <li>修了後、認定鑑定士として活動開始</li>
+        </ul>
+
+        <p>オンライン受講に対応。複数の認定講師が丁寧にサポートします。</p>
+        <a href="#contact" class="btn" style="font-size:0.8rem;padding:0.8rem 2rem">講座について問い合わせる</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Flow -->
+<section id="flow">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">お申し込みの<span>流れ</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="flow-steps">
+      <div class="flow-step fade-in">
+        <div class="flow-num">01</div>
+        <div class="flow-body">
+          <h4>お問い合わせフォームよりご連絡</h4>
+          <p>ご希望の鑑定メニュー（誕生色数・お試し鑑定・養成講座）をお知らせください。</p>
+        </div>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-num">02</div>
+        <div class="flow-body">
+          <h4>日程・詳細のご案内</h4>
+          <p>担当講師よりご連絡します。日程・料金・必要事項をご確認いただきます。</p>
+        </div>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-num">03</div>
+        <div class="flow-body">
+          <h4>必要情報のご提供</h4>
+          <p>生年月日・出生時刻・出生地をお知らせください。<br>※出生時刻が不明の場合もご相談ください。</p>
+        </div>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-num">04</div>
+        <div class="flow-body">
+          <h4>鑑定当日</h4>
+          <p>オンライン（Zoom）または対面にて、鑑定士がマンツーマンで丁寧に読み解きます。</p>
+        </div>
+      </div>
+      <div class="flow-step fade-in">
+        <div class="flow-num">05</div>
+        <div class="flow-body">
+          <h4>鑑定書のお渡し</h4>
+          <p>鑑定内容を記した鑑定書をお渡しします。あなただけの色彩の羅針盤として、日々の生活にご活用ください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="fade-in">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">お<span>問い合わせ</span></h2>
+      <div class="divider"></div>
+      <p class="section-body" style="font-size:0.9rem;color:var(--text-muted)">
+        鑑定のご予約・養成講座のご相談はこちらのフォームよりお気軽にどうぞ。<br>
+        3営業日以内にご返信いたします。
+      </p>
+    </div>
+
+    <form class="contact-form fade-in" action="#" method="post" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label>お名前<span class="required">*必須</span></label>
+        <input type="text" name="name" placeholder="山田 花子" required>
+      </div>
+      <div class="form-group">
+        <label>メールアドレス<span class="required">*必須</span></label>
+        <input type="email" name="email" placeholder="example@mail.com" required>
+      </div>
+      <div class="form-group">
+        <label>お問い合わせ種別<span class="required">*必須</span></label>
+        <select name="type" required>
+          <option value="" disabled selected>選択してください</option>
+          <option value="birth">誕生色数鑑定について</option>
+          <option value="trial">お試し鑑定（ライト・フル）について</option>
+          <option value="course">鑑定士養成講座について</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>ご希望の受講形態</label>
+        <select name="format">
+          <option value="">選択してください（任意）</option>
+          <option value="online">オンライン（Zoom）</option>
+          <option value="inperson">対面</option>
+          <option value="either">どちらでも</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>ご質問・ご要望</label>
+        <textarea name="message" placeholder="ご自由にお書きください"></textarea>
+      </div>
+      <div class="form-note">
+        ご入力いただいた個人情報は、お問い合わせへの回答のみに使用し、第三者への提供は行いません。
+      </div>
+      <button type="submit" class="btn-submit">送　信　する</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">いろみずきカラー協会</div>
+  <div class="footer-sub">IROMIZUKI COLOR ASSOCIATION</div>
+  <div class="footer-sns">
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+      </svg>
+      Instagram
+    </a>
+  </div>
+  <div class="footer-copy">© 2024 いろみずきカラー協会 All Rights Reserved.</div>
+</footer>
+
+<script>
+  // Stars
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    star.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      --dur: ${Math.random() * 4 + 2}s;
+      --delay: ${Math.random() * 5}s;
+    `;
+    starsContainer.appendChild(star);
+  }
+
+  // Fade in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Form submit placeholder
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = '送信しました。ありがとうございます。';
+    btn.style.background = 'rgba(200,168,75,0.15)';
+    btn.style.cursor = 'default';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
