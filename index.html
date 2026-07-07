@@ -3,8 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>いろみずきカラー協会 | 神聖色数鑑定</title>
+<title>いろみずきカラー協会 | 神聖色数カラー鑑定</title>
 <meta name="description" content="月とカラーとナンバーから詠む。神聖幾何学×占星術×カバラ数秘による「神聖色数」で、あなたの魂が選んだ色と生き方を読み解きます。">
+
+<!-- OGP / SNSシェア用 -->
+<meta property="og:title" content="いろみずきカラー協会 | 神聖色数カラー鑑定">
+<meta property="og:description" content="あなたの魂が選んだ色を知る。神聖幾何学×占星術×カバラ数秘による神聖色数カラー鑑定。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ritzycolor.github.io/iromizuki-web/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+
+<!-- Favicon（虹の円） -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23e88'/%3E%3Cstop offset='0.25' stop-color='%23eC5'/%3E%3Cstop offset='0.5' stop-color='%234b8'/%3E%3Cstop offset='0.75' stop-color='%2347c'/%3E%3Cstop offset='1' stop-color='%23c4a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='url(%23g)' stroke-width='12'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23c8a84b'/%3E%3C/svg%3E">
+
+<!-- Webフォント：しっぽり明朝 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     /* text on gold fills (dark ink reads better on gold than white) */
@@ -29,7 +45,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', serif;
+    font-family: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', serif;
     /* 七色パステルのふんわり背景（添付画像の色調を再現） */
     background:
       radial-gradient(ellipse at 18% 18%, rgba(208,238,255,0.9) 0%, transparent 48%),
@@ -150,8 +166,12 @@
 
   .hero-title em {
     font-style: normal;
-    color: var(--gold-light);
     display: block;
+    background: linear-gradient(120deg, #a8843f 0%, #cfa963 45%, #94733f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--gold-light);
   }
 
   .hero-tagline {
@@ -214,7 +234,6 @@
     color: var(--text-muted);
     font-size: 0.7rem;
     letter-spacing: 0.3em;
-    animation: fadeInUp 2s ease infinite;
   }
 
   .scroll-line {
@@ -873,13 +892,149 @@
   .fade-in {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* 子要素が順にふわっと現れる（カード類） */
+  .color-cards.visible .color-card,
+  .discover-planets.visible .planet-item,
+  .what-grid.visible .what-card {
+    animation: riseIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========== 素敵ディテール ========== */
+  /* セクションラベルの飾り */
+  .section-label::before {
+    content: '✦';
+    margin-right: 0.6em;
+    font-size: 0.85em;
+  }
+
+  /* ゴールドボタンに走る光 */
+  .btn-trial:not(.btn-trial--outline) {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-trial:not(.btn-trial--outline)::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -80%;
+    width: 50%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+    transform: skewX(-20deg);
+    animation: shine 3.6s ease-in-out infinite;
+  }
+
+  @keyframes shine {
+    0%, 60% { left: -80%; }
+    100% { left: 130%; }
+  }
+
+  /* 12色の円：ふわふわ浮遊 */
+  .color-strip div {
+    animation: bob 3.2s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * 0.22s);
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .color-strip div:hover { animation-play-state: paused; transform: scale(1.3); }
+
+  /* トップへ戻る */
+  .to-top {
+    position: fixed;
+    right: 1.4rem;
+    bottom: 1.4rem;
+    z-index: 90;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(176,141,87,0.45);
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(120,90,140,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .to-top:hover { background: rgba(255,255,255,0.95); }
+
+  /* ========== モバイルメニュー ========== */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px; height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 1px;
+    background: var(--gold-light);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .menu-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2) { opacity: 0; }
+  .menu-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    z-index: 99;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(176,141,87,0.25);
+    padding: 0.6rem 0 1rem;
+    flex-direction: column;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.92rem;
+    letter-spacing: 0.15em;
+    padding: 0.85rem 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-nav a:last-child { border-bottom: none; }
 
   /* ========== TRIAL READING ========== */
   #trial {
@@ -1136,6 +1291,7 @@
   /* ========== RESPONSIVE ========== */
   @media (max-width: 768px) {
     nav { display: none; }
+    .menu-toggle { display: flex; }
 
     .course-content {
       grid-template-columns: 1fr;
@@ -1192,7 +1348,22 @@
     <a href="#course">講師養成</a>
     <a href="#contact">お問い合わせ</a>
   </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- モバイルメニュー -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#what">神聖色数とは</a>
+  <a href="#readings">鑑定メニュー</a>
+  <a href="#trial">お試し鑑定</a>
+  <a href="#course">講師養成</a>
+  <a href="#contact">お問い合わせ</a>
+</div>
+
+<!-- トップへ戻る -->
+<a href="#hero" class="to-top" id="toTop" aria-label="トップへ戻る">↑</a>
 
 <!-- Hero -->
 <section id="hero">
@@ -1828,6 +1999,29 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   fadeEls.forEach(el => observer.observe(el));
+
+  // 順次アニメーション用インデックス
+  document.querySelectorAll('.color-cards, .discover-planets, .what-grid, .color-strip').forEach(group => {
+    [...group.children].forEach((el, i) => el.style.setProperty('--i', i));
+  });
+
+  // モバイルメニュー
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menuToggle.classList.remove('open');
+    mobileNav.classList.remove('open');
+  }));
+
+  // トップへ戻る
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
 
   // Form submit placeholder
   function handleSubmit(e) {
